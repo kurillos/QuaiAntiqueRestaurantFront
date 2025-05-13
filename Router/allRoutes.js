@@ -5,6 +5,7 @@ import Route from "./Route.js";
 export const routes = [
 
     new Route("/", "Accueil", "/pages/home.html"),
+    new Route("/galerie", "La galerie", "/pages/galerie.html"),
     
 ];
 
