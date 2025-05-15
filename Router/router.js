@@ -6,7 +6,7 @@ console.log(routes);
 
 // Création d'une route pour la page 404 (page introuvable)
 
-const route404 = new Route("404", "Page introuvable", "/pages/404.html");
+const route404 = new Route("404", "Page introuvable", "/pages/404.html", []);
 
 // Fonction pour récupérer la route correspondant à une URL donnée
 
@@ -23,7 +23,6 @@ const getRouteByUrl = (url) => {
       currentRoute = element;
 
     }
-
   });
 
   // Si aucune correspondance n'est trouvée, on retourne la route 404
@@ -49,6 +48,37 @@ const LoadContentPage = async () => {
   // Récupération de l'URL actuelle
 
   const actualRoute = getRouteByUrl(path);
+
+  //Vérifier les droits d'accès à la page
+
+  const allRolesArray = actualRoute.authorize;
+
+  if(allRolesArray.length > 0){
+
+    if(allRolesArray.includes("disconnected")){
+
+      if(isConnected()){
+
+        window.location.replace("/");
+
+      }
+
+    }
+
+    else{
+
+      const roleUser = getRole();
+
+      if(!allRolesArray.includes(roleUser)){
+
+        window.location.replace("/");
+
+      }
+
+    }
+
+  }
+
 
   // Récupération du contenu HTML de la route
 
@@ -79,6 +109,9 @@ const LoadContentPage = async () => {
   // Changement du titre de la page
 
   document.title = actualRoute.title + " - " + websiteName;
+
+  //Afficher et masquer les élements en fonction du rôle de l'utilisateur
+  showAndHideElementsForRoles();
 
 };
 
