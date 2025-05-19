@@ -1,6 +1,7 @@
 const tokenCookieName = "accesstoken";
 const signoutBtn = document.getElementById("signout-Btn");
 const RoleCookieName = "role";
+const apiUrl = "http://127.0.0.1:8000/api/";
 
 signoutBtn.addEventListener("click", signout);
 
@@ -24,11 +25,11 @@ function getToken(){
 
 function setCookie(name,value,days) {
 
-    var expires = "";
+    let expires = "";
 
     if (days) {
 
-        var date = new Date();
+        let date = new Date();
 
         date.setTime(date.getTime() + (days*24*60*60*1000));
 
@@ -42,13 +43,13 @@ function setCookie(name,value,days) {
 
 function getCookie(name) {
 
-    var nameEQ = name + "=";
+    let nameEQ = name + "=";
 
-    var ca = document.cookie.split(';');
+    let ca = document.cookie.split(';');
 
-    for(var i=0;i < ca.length;i++) {
+    for(let i=0;i < ca.length;i++) {
 
-        var c = ca[i];
+        let c = ca[i];
 
         while (c.charAt(0)==' ') c = c.substring(1,c.length);
 
@@ -112,3 +113,9 @@ function showAndHideElementsForRoles(){
         }
 })
 }
+
+function sanitizeHtml(text){
+    const tempHtml = createElement('div');
+    tempHtml.textContent = text;
+    return tempHtml.innerHTML;
+};
