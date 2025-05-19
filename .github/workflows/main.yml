@@ -14,6 +14,7 @@ jobs:
         server: ftp-cyrilquaiantiquerestaurant.alwaysdata.net
         username: cyrilquaiantiquerestaurant
         password: ${{ secrets.ftp_password }}
+        protocol: ftps
         server-dir: /www/
         exclude: |
 
