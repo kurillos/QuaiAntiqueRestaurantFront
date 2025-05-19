@@ -10,7 +10,7 @@ jobs:
 
     - name: 📂 Install dependencies
       uses: actions/setup-node@v2
-            with:
+      with:
         node-version: '14'  
 
     - name: 📂 Install npm dependencies
