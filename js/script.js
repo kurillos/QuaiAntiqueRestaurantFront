@@ -115,7 +115,7 @@ function showAndHideElementsForRoles(){
 }
 
 function sanitizeHtml(text){
-    const tempHtml = createElement('div');
+    const tempHtml = document.createElement('div');
     tempHtml.textContent = text;
     return tempHtml.innerHTML;
 }
